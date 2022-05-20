@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/utils/color_utils.dart';
 import 'package:flutter_auth/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_auth/services/auth_google_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,17 +25,23 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut().then((value) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignInScreen()
-                )
-              );
-              });
+            onPressed: () async {
+              await FirebaseServices().googleSignOut();
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SignInScreen())
+                );
+            },
+            // onPressed: () {
+            //   FirebaseAuth.instance.signOut().then((value) {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const SignInScreen()
+            //     )
+            //   );
+            //   });
 
-            }, 
+            // }, 
             icon: const Icon(
               Icons.logout
             ),
@@ -55,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
+                Text("${FirebaseAuth.instance.currentUser!.email}"),
               ],
             ),
           ))),

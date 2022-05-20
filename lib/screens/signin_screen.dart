@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/form_input_component.dart';
 import 'package:flutter_auth/components/form_valid_component.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:flutter_auth/services/auth_google_service.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -79,7 +79,51 @@ class _SignInScreenState extends State<SignInScreen> {
                   );        
               
                }),
-                signUpValidation()
+                signUpValidation(),
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 120),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await FirebaseServices().signInWithGoogle();
+                        if(FirebaseAuth.instance.currentUser!.email != ""){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        }
+                      },
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.black26;
+                        }
+                        return Colors.white;
+                      })),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/google.png",
+                              height: 20,
+                              width: 20,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            const Text(
+                              "Gmail",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black87),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -94,7 +138,8 @@ class _SignInScreenState extends State<SignInScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Avez-vous un compte ?",
-            style: TextStyle(color: Colors.orange)),
+          style: TextStyle(color: Colors.orange)
+        ),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
@@ -108,5 +153,4 @@ class _SignInScreenState extends State<SignInScreen> {
       ],
     );
   }
-
 }
