@@ -31,17 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 MaterialPageRoute(builder: (context) => const SignInScreen())
                 );
             },
-            // onPressed: () {
-            //   FirebaseAuth.instance.signOut().then((value) {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => const SignInScreen()
-            //     )
-            //   );
-            //   });
-
-            // }, 
             icon: const Icon(
               Icons.logout
             ),
@@ -62,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
-                Text("${FirebaseAuth.instance.currentUser!.email}"),
+                Text("Vous êtes connecté : ${FirebaseAuth.instance.currentUser!.email}"),
               ],
             ),
           ))),
