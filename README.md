@@ -1,16 +1,21 @@
-# flutter_auth
+# Flutter auth
 
-A new Flutter project.
+Projet flutter système de connexion à une base firebase
 
-## Getting Started
+## Pré-requis
 
-This project is a starting point for a Flutter application.
+* Flutter version :  3.0.0
+* Un émulateur android ou un téléphone portable avec l'usb debug est recoonu par flutter comme devices
 
-A few resources to get you started if this is your first Flutter project:
+## Utilisation de l'application
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Ce rendre sur Firebase : [Firebase](https://console.firebase.google.com/u/0/)
+2. Initialiser un nouveau projet
+3. Remplir le nom du projet
+4. Désactiver google analytics
+5. Cliquer sur créer un projet
+6. Cliquer sur le logo android pour ajouter une application android
+7. Remplir les formulaire
+8. télécharger le fichier de configuration dans le dossier android/app de l'application
+9. Cliquer sur authenfication > commencer > Sign-in >Cliquer sur andresse mail / mots de passe pour configurer l'authentification et google
+10. Exécuter l'application : flutter run 
